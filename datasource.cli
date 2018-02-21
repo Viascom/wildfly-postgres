@@ -4,6 +4,6 @@ batch
 
 deploy /opt/wildfly/postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar
 
-data-source add --name=PostgresDS --driver-name=postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar --jndi-name=java:/datasources/PostgresDS --connection-url=jdbc:postgresql://${postgres.ipaddress}:${postgres.port}/${postgres.database} --user-name=${postgres.username} --password=${postgres.password}
+data-source add --name=PostgresDS --driver-name=postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar --jndi-name=java:/datasources/PostgresDS --connection-url=jdbc:postgresql://${POSTGRES_IPADDRESS}:${POSTGRES_PORT}/${POSTGRES_DATABASE} --user-name=${POSTGRES_USERNAME} --password=${POSTGRES_PASSWORD}
 
 run-batch
