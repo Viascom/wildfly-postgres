@@ -1,4 +1,4 @@
-FROM viascom/base-wildfly:10
+FROM viascom/base-wildfly:11
 
 ENV POSTGRESQL_JDBC_DRIVER_VERSION 42.2.1
 
