@@ -1,8 +1,8 @@
-FROM viascom/base-wildfly:11.0.0
+FROM viascom/base-wildfly:10.1.0
 
 ENV POSTGRESQL_JDBC_DRIVER_VERSION 42.2.1
 
-RUN wget "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar" -O ${WILDFLY_HOME}/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar
+RUN wget -q "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar" -O ${WILDFLY_HOME}/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar
 
 ADD datasource.cli ${WILDFLY_HOME}/datasource.cli
 RUN sed -i -e s/POSTGRESQL-JDBC-DRIVER-VERSION/${POSTGRESQL_JDBC_DRIVER_VERSION}/g ${WILDFLY_HOME}/datasource.cli
