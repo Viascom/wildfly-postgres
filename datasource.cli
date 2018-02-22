@@ -2,8 +2,12 @@
 embed-server
 batch
 
-deploy /opt/wildfly/postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar
+module add --name=org.postgres \
+      --resources=postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar \
+      --dependencies=javax.api,javax.transaction.api
 
-data-source add --name=PostgresDS --driver-name=postgresql-POSTGRESQL-JDBC-DRIVER-VERSION.jar --jndi-name=java:/datasources/PostgresDS --connection-url=jdbc:postgresql://${POSTGRES_IPADDRESS}:${POSTGRES_PORT}/${POSTGRES_DATABASE} --user-name=${POSTGRES_USERNAME} --password=${POSTGRES_PASSWORD}
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgres,driver-class-name=org.postgresql.Driver)
+
+data-source add --name=PostgresDS --driver-name=postgresql --jndi-name=java:/datasources/PostgresDS --connection-url=jdbc:postgresql://${env.POSTGRES_IPADDRESS}:${env.POSTGRES_PORT:3306}/${env.POSTGRES_DATABASE} --user-name=${env.POSTGRES_USERNAME} --password=${env.POSTGRES_PASSWORD}
 
 run-batch
