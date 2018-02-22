@@ -1,5 +1,7 @@
 FROM viascom/base-wildfly:10.1.0
 
+USER wildfly
+
 ENV POSTGRESQL_JDBC_DRIVER_VERSION 42.2.1
 
 RUN wget -q "https://jdbc.postgresql.org/download/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar" -O ${WILDFLY_HOME}/postgresql-${POSTGRESQL_JDBC_DRIVER_VERSION}.jar
